@@ -1,0 +1,76 @@
+<?php
+// define variables and set to empty values
+$nameErr = $first_nameErr= $last_nameErr = $emailErr = $mobileErr = "";
+$first_name = $last_name = $email = $mobile = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if (empty($_POST["first_name"])) {
+     $nameErr = "First Name is required";
+   } else {
+     $first_name = test_input($_POST["first_name"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+       $nameErr = "Only letters and white space allowed"; 
+     }
+   }
+   
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if (empty($_POST["last_name_name"])) {
+     $last_nameErr = "last Name is required";
+   } else {
+     $last_name = test_input($_POST["last_name"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+       $last_nameErr = "Only letters and white space allowed"; 
+     }
+   }
+   
+   if (empty($_POST["email"])) {
+     $emailErr = "Email is required";
+   } else {
+     $email = test_input($_POST["email"]);
+     // check if e-mail address is well-formed
+     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+       $emailErr = "Invalid email format"; 
+     }
+   }
+   
+
+   if (empty($_POST["mobile"])) {
+     $mobileErr = "mobile no. is required";
+   } else {
+     $mobile = test_input($_POST["mobile"]);
+     // check if e-mail address is well-formed
+     if (!filter_var($mobile, FILTER_VALIDATE_EMAIL)) {
+       $emailErr = "Invalid mobile format"; 
+     }
+   }
+}
+
+function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field.</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+   First Name: <input type="text" name="name" value="<?php echo $first_name;?>">
+   <span class="error">* <?php echo $first_nameErr;?></span>
+   Last Name: <input type="text" name="name" value="<?php echo $last_name;?>">
+   <span class="error">* <?php echo $last_nameErr;?></span>
+   <br><br>
+   
+   E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+   <span class="error">* <?php echo $emailErr;?></span>
+   <br><br>
+   
+   mobile No. : <input type="text" name="name" value="<?php echo $mobile;?>">
+   <span class="error">* <?php echo $mobileErr;?></span>
+   <br><br>
+   
+   <input type="submit" name="submit" value="Submit"> 
+</form>

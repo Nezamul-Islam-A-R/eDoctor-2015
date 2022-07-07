@@ -1,0 +1,43 @@
+﻿cold
+cancer
+aids
+.....
+Mother & Baby
+=====================================
+sign up Doctor -> sign_doc
+=>
+First Name
+Last Name
+user_name
+Department
+password
+institution
+Passed Year
+E-mail (key)
+Contact no.
+Gender
+user_name
+website (11)
+
+sign up patient -> sign_pat
+first_name
+last_name
+user_name
+Gender
+E-mail (key)
+mobile int
+password (11)
+
+log in doctor -> log_doc
+=>
+E-mail
+password
+
+log in patient -> log_pat
+=>
+E-mail
+Password
+====================================
+post Doc -> seen by patient
+ask ques to Doc -> patient
+ask Ques to Admin -> by Doctor
